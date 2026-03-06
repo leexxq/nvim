@@ -32,4 +32,3 @@ local mconds = require("luasnip.extras.conditions").make_condition
 -- 添加全局代码片段（对所有文件类型生效）
 --
 --
-

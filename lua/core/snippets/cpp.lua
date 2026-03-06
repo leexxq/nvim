@@ -39,6 +39,21 @@ lsa("cpp", {
 	s("#debug_print_stl",
 		t({ "#ifndef DEBUG", "#define printSTL(v)", "#endif", "#ifdef DEBUG",
 			'#define printSTL(v) for(auto && vv: v) std::cout << vv << " "; std::cout << endl;', "#endif" })),
+	s(
+		"fori",
+		fmt(
+			[[
+		for(int i = {1}; i < {2}; ++i){{
+			{3}
+		}}
+		]],
+			{
+				i(1, "0"),
+				i(2, "n"),
+				i(3)
+			}
+		)
+	),
 }, {
 	key = "cpp"
 }

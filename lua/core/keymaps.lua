@@ -46,6 +46,12 @@ keymap("n", "<m-8>", ":tabn 8<CR>", { silent = true })
 keymap("n", "<m-9>", ":tabn 9<CR>", { silent = true })
 keymap("n", "<m-0>", ":tabn 10<CR>", { silent = true })
 
+---in insert quick cursor move likely terminal
+keymap("i", "<C-a>", "<Home>", {})
+keymap("i", "<C-f>", "<Right>", {})
+keymap("i", "<C-b>", "<Left>", {})
+keymap("i", "<C-e>", "<End>", {})
+
 -- keymap("i", "<C-CR>", "<esc>A;<CR>")
 
 

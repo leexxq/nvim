@@ -87,6 +87,13 @@ return {
 					bg = "NONE",
 					-- underdashed = true,
 				})
+
+				vim.api.nvim_set_hl(0, "DiffAdd", {
+					bg = "None",
+					bold = true,
+					underdashed = true,
+					-- underdashed = true,
+				})
 			end
 
 			vim.cmd.colorscheme("gruvbox-material")
@@ -98,7 +105,7 @@ return {
 
 	{
 		'AlexvZyl/nordic.nvim',
-		lazy = false,
+		lazy = true,
 		-- priority = 1000,
 		-- config = function()
 		-- 	require('nordic').load()

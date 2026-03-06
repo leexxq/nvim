@@ -4,8 +4,20 @@ return {
 		'nvim-treesitter/nvim-treesitter',
 		'echasnovski/mini.nvim',
 		'echasnovski/mini.icons',
-		'nvim-tree/nvim-web-devicons'
+		'nvim-tree/nvim-web-devicons',
+		{
+			"iamcco/markdown-preview.nvim",
+			cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+			event = "VeryLazy",
+			build = "cd app && yarn install",
+			init = function()
+				vim.g.mkdp_filetypes = { "markdown" }
+			end,
+			ft = { "markdown" },
+		}
 	},
+
+	event = "VeryLazy",
 	opts = {
 		file_types = { 'markdown', 'codecompanion' },
 		heading = {
@@ -28,16 +40,4 @@ return {
 			language_border = ' ',
 		}
 	},
-
-	-- config = function()
-	-- 	require('render-markdown').setup({
-	-- 		heading ={
-	-- 			custom ={
-	--
-	--
-	-- 			}
-	--
-	-- 		}
-	-- 	})
-	-- end
 }

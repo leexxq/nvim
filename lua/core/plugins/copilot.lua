@@ -4,8 +4,10 @@ return {
 	event = "InsertEnter",
 	opts = {
 		filetypes = {
-			cs = true,
-			cpp = true,
+			-- cs = true,
+			-- cpp = true,
+			-- tex = true,
+			-- lua = true,
 			["*"] = false, -- disable for all other filetypes and ignore default `filetypes`
 		},
 		suggestion = {

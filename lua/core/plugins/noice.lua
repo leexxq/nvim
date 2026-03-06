@@ -1,3 +1,0 @@
--- lazy.nvim
-return {
-}
