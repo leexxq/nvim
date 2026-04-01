@@ -40,8 +40,16 @@ npm install -g tree-sitter-cli
 
 Clone this repository into your Neovim config directory:
 
+Linux:
+
 ```bash
-git clone <your-repo-url> ~/.config/nvim
+git clone https://github.com/leexxq/nvim.git ~/.config/nvim
+```
+
+Windows
+
+```bash
+git clone https://github.com/leexxq/nvim.git ~/AppData/Local/nvim
 ```
 
 On first launch, `nvim` will bootstrap `lazy.nvim` and install plugins automatically.
@@ -58,7 +66,7 @@ Common options:
 
 ```bash
 # one-command install 
-python3 install_deps.py -y
+python3 install_deps.py
 
 # Skip confirmation prompt
 python3 install_deps.py -y

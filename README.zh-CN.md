@@ -40,8 +40,17 @@ npm install -g tree-sitter-cli
 
 将仓库克隆到 Neovim 配置目录：
 
+对于Linux:
+
 ```bash
-git clone <your-repo-url> ~/.config/nvim
+git clone https://github.com/leexxq/nvim.git ~/.config/nvim
+```
+
+
+对于Windows
+
+```bash
+git clone https://github.com/leexxq/nvim.git ~/AppData/Local/nvim
 ```
 
 首次启动 `nvim` 时会自动引导安装 `lazy.nvim` 及插件。
