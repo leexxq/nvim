@@ -57,8 +57,8 @@ python3 install_deps.py
 Common options:
 
 ```bash
-# Print commands without executing
-python3 install_deps.py --dry-run
+# one-command install 
+python3 install_deps.py -y
 
 # Skip confirmation prompt
 python3 install_deps.py -y

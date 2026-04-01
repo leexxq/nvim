@@ -57,8 +57,8 @@ python3 install_deps.py
 常用参数：
 
 ```bash
-# 仅预览命令，不实际执行
-python3 install_deps.py --dry-run
+# 一键安装
+python3 install_deps.py 
 
 # 跳过确认提示
 python3 install_deps.py -y
