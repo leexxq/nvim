@@ -46,7 +46,7 @@ Linux:
 git clone https://github.com/leexxq/nvim.git ~/.config/nvim
 ```
 
-Windows
+Windows:
 
 ```bash
 git clone https://github.com/leexxq/nvim.git ~/AppData/Local/nvim

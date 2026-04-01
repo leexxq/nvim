@@ -47,7 +47,7 @@ git clone https://github.com/leexxq/nvim.git ~/.config/nvim
 ```
 
 
-对于Windows
+对于Windows:
 
 ```bash
 git clone https://github.com/leexxq/nvim.git ~/AppData/Local/nvim
