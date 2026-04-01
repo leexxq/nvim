@@ -7,6 +7,9 @@ return {
 			"jbyuki/one-small-step-for-vimkind",
 		},
 		config = function()
+			-- code
+			local dap = require('dap')
+			-- keymap
 			vim.keymap.set('n', '<leader>dB', require "dap".toggle_breakpoint,
 				{ noremap = true, desc = "toggle breakpoint" })
 			vim.keymap.set('n', '<leader>dC', require "dap".continue, { noremap = true, desc = "debug continue" })
@@ -16,10 +19,6 @@ return {
 			vim.keymap.set('n', '<leader>dL', function()
 				require "osv".launch({ port = 8086 })
 			end, { noremap = true, desc = "launch lua server" })
-			-- code
-			local dap = require('dap')
-			-- keymap
-
 
 			-- lua debug config
 			dap.configurations.lua = {
@@ -37,7 +36,7 @@ return {
 			--codelldb debugger
 			dap.adapters.codelldb = {
 				type = "executable",
-				command = "/Users/ikun/Library/Codelldb/extension/adapter/codelldb", -- or if not in $PATH: "/absolute/path/to/codelldb"
+				command = "codelldb", -- or if not in $PATH: "/absolute/path/to/codelldb"
 				-- On windows you may have to uncomment this:
 				-- detached = false,
 			}
@@ -290,7 +289,8 @@ return {
 	},
 	{
 		"rcarriga/nvim-dap-ui",
-		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+		event = "VeryLazy",
+		dependencies = {  "nvim-neotest/nvim-nio" },
 		config = function()
 			require("lazydev").setup({
 				library = { "nvim-dap-ui" },

@@ -2,6 +2,7 @@ return {
 	---@module 'lazy'
 	---@type LazyPluginBase
 	"kawre/leetcode.nvim",
+	event="VeryLazy",
 	build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
 	dependencies = {
 		"nvim-lua/plenary.nvim",

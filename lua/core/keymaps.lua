@@ -55,6 +55,9 @@ keymap("i", "<C-e>", "<End>", {})
 -- keymap("i", "<C-CR>", "<esc>A;<CR>")
 
 
+keymap("n", "<Leader>gvi", function ()
+	vim.cmd.e{vim.fn.stdpath('config')}
+end, { desc = "Explorer vimrc file same as cmd", silent = true, })
 
 keymap("n", "<C-W>t", ":tabnew<CR>", { desc = "Create new tab window", silent = true, })
 keymap("n", "[n", ":cn<CR>", { desc = "jump to next error after make", silent = true, })

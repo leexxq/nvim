@@ -6,3 +6,5 @@ return {
 		vim.keymap.set("n", "<Leader>GP", ":Gitsigns preview_hunk<CR>", { desc = "Git Preview" })
 	end,
 }
+
+

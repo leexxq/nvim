@@ -1,4 +1,13 @@
 -- used custom lsp conf in vim running
+vim.lsp.config['basedpyright'] = {
+	settings = {
+		basedpyright = {
+			analysis = {
+				typeCheckingMode = "basic",
+			},
+		},
+	}
+}
 -- diagnostic UI touches
 vim.diagnostic.config {
 	-- virtual_lines = { current_line = true },

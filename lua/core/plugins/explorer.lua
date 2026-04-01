@@ -12,12 +12,6 @@ return {
 			desc = "Open default file explorer",
 		},
 		{
-			"<Leader>gvi",
-			mode = { "n" },
-			"<cmd>e $VIMRC<CR>",
-			desc = "Explorer vimrc file same as cmd,ensure $VIMRC exist",
-		},
-		{
 			"<Leader>ef",
 			mode = { "n" },
 			"<cmd>lua require('oil').open_float()<CR>",
