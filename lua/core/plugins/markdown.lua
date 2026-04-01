@@ -1,22 +1,5 @@
 return {
 	'MeanderingProgrammer/render-markdown.nvim',
-	dependencies = {
-		'nvim-treesitter/nvim-treesitter',
-		'echasnovski/mini.nvim',
-		'echasnovski/mini.icons',
-		'nvim-tree/nvim-web-devicons',
-		{
-			"iamcco/markdown-preview.nvim",
-			cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-			event = "VeryLazy",
-			build = "cd app && yarn install",
-			init = function()
-				vim.g.mkdp_filetypes = { "markdown" }
-			end,
-			ft = { "markdown" },
-		}
-	},
-
 	event = "VeryLazy",
 	opts = {
 		file_types = { 'markdown', 'codecompanion' },
@@ -38,6 +21,19 @@ return {
 		},
 		code = {
 			language_border = ' ',
+		}
+	},
+	dependencies = {
+		'nvim-treesitter/nvim-treesitter',
+		'echasnovski/mini.nvim',
+		'echasnovski/mini.icons',
+		'nvim-tree/nvim-web-devicons',
+		{
+			-- install without yarn or npm
+			"iamcco/markdown-preview.nvim",
+			cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+			ft = { "markdown" },
+			build = function() vim.fn["mkdp#util#install"]() end,
 		}
 	},
 }
