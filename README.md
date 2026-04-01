@@ -1,36 +1,127 @@
-# 保证正常运行必须安装
+# Neovim Configuration
 
-1. git
-2. gcc or clang
-3. make
-4. NerdFont:"0xProto Nerd Font Propo"
+一套以 `lazy.nvim` 为核心、面向日常开发与调试的 Neovim 配置。  
+该配置强调开箱可用、模块化组织与可扩展性，适合作为个人主力环境。
+主打透明背景，一切背景跟随终端
 
-# 编辑说明
+## Features
 
-## 其他环境依赖
+- 插件管理：`lazy.nvim`（自动引导安装）
+- 语法高亮：`nvim-treesitter`（自动安装解析器）
+- LSP 与补全：已集成语言服务与补全相关配置
+- 调试能力：`nvim-dap` + `nvim-dap-ui` + virtual text
+- Markdown 体验：渲染增强 + 预览支持
+- GitHub Copilot：插入模式自动触发建议
+- 输入法切换（macOS）：退出插入模式后自动切换英文输入法
 
-### 对于markdown
+## Requirements
 
-1. yarn
-2. npm
-3. node-js
+请先确保以下基础依赖可用：
 
-### 对于dap
+1. `git`
+2. `gcc` 或 `clang`（编译相关工具链）
+3. `make`
+4. `tree-sitter-cli`
+5. Nerd Font（推荐：`0xProto Nerd Font Propo`）
 
-目前提供了对c++的支持，现在dap的adapter是codelldb，注意在终端中codelldb命令确保已经指向codelldb的可执行文件，请检查plugins/dap.lua中的配置。
+安装 `tree-sitter-cli`：
 
-## 对于中文输入法在切换为normal模式后自动切换输入法
+```bash
+# 方式一：cargo
+cargo install --locked tree-sitter-cli
 
-1. macos
+# 方式二：npm
+npm install -g tree-sitter-cli
+```
 
-记得安装macism，并且确定能够在终端使用,具体请见./lua/core/custom/input.lua
+## Installation
 
-2. windows
+将本仓库放置为 Neovim 配置目录：
 
-对于不同的输入法有不同的解决方案，不提供。
+```bash
+git clone <your-repo-url> ~/.config/nvim
+```
 
-3.linux
+首次启动 `nvim` 时会自动引导安装 `lazy.nvim` 及插件。
 
-无
+### One-command dependency setup
 
+仓库根目录提供跨平台依赖安装脚本：
 
+```bash
+python3 install_deps.py
+```
+
+常用参数：
+
+```bash
+# 仅预览将要执行的安装命令
+python3 install_deps.py --dry-run
+
+# 跳过确认提示
+python3 install_deps.py -y
+```
+
+## Optional Dependencies
+
+### Markdown
+
+`markdown-preview.nvim` 的安装流程依赖 Node.js 生态，建议安装：
+
+- `node`
+- `npm`
+- `yarn`（可选，但推荐）
+
+### Search
+
+- `rg`（ripgrep，用于快速全文检索）
+
+### GitHub Copilot
+
+- `node`（Copilot 插件运行依赖）
+
+### Debug (DAP)
+
+当前配置已提供 C++ 调试支持，默认使用 `codelldb` 作为适配器。  
+请确保终端中 `codelldb` 命令可直接调用到可执行文件；如需调整路径，请修改：
+
+`lua/core/plugins/dap.lua`
+
+`codelldb` 可通过 Mason 安装，其他语言适配器可按 `nvim-dap` 官方方式自行扩展。
+
+## Input Method Integration
+
+### macOS
+
+已配置插入模式/普通模式输入法自动切换。  
+请安装并确保 `macism` 可在终端直接调用。相关实现见：
+
+`lua/core/custom/input.lua`
+
+### Windows / Linux
+
+当前仓库未提供通用输入法自动切换方案，可按个人输入法工具自行适配。
+
+## Project Structure
+
+```text
+.
+├── init.lua
+├── lua/
+│   └── core/
+│       ├── options.lua
+│       ├── keymaps.lua
+│       ├── lazy.lua
+│       ├── custom.lua
+│       └── plugins/
+└── lazy-lock.json
+```
+
+## Customization
+
+- 插件配置：`lua/core/plugins/`
+- 编辑器基础行为：`lua/core/options.lua`
+- 键位映射：`lua/core/keymaps.lua`
+- 自定义逻辑（输入法、LSP 扩展等）：`lua/core/custom/`
+
+建议在已有模块上增量修改，保持结构一致，便于后续维护。
