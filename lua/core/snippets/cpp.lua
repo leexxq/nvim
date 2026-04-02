@@ -1,5 +1,4 @@
 local ls = require("luasnip")
-local ts_utils = require("nvim-treesitter.ts_utils")
 local lsa = ls.add_snippets
 local s = ls.snippet
 local sn = ls.snippet_node
