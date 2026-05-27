@@ -19,9 +19,49 @@ return {
 		},
 		quickfile = { enabled = true },
 		scope = { enabled = true },
-		scroll = { enabled = false },
+		scroll = { enabled = true },
 		statuscolumn = { enabled = true },
 		words = { enabled = true },
+
+		styles = {
+			terminal = {
+				bo = {
+					filetype = "snacks_terminal",
+				},
+				wo = {},
+				stack = true, -- when enabled, multiple split windows with the same position will be stacked together (useful for terminals)
+				keys = {
+					gf = function(self)
+						local f = vim.fn.findfile(vim.fn.expand("<cfile>"), "**")
+						if f == "" then
+							Snacks.notify.warn("No file under cursor")
+						else
+							self:hide()
+							vim.schedule(function()
+								vim.cmd("e " .. f)
+							end)
+						end
+					end,
+					term_normal = {
+						"<esc>",
+						function()
+							vim.cmd("stopinsert")
+							-- self.esc_timer = self.esc_timer or (vim.uv or vim.loop).new_timer()
+							-- if self.esc_timer:is_active() then
+							-- else
+							-- 	self.esc_timer:start(200, 0, function() end)
+							-- 	return "<esc>"
+							-- end
+						end,
+						mode = "t",
+						expr = true,
+						desc = "Double escape to normal mode",
+					},
+				}
+
+			}
+
+		}
 	},
 	keys = {
 		-- common

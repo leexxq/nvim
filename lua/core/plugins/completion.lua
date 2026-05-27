@@ -45,58 +45,87 @@ return {
 		opts = {
 			enabled = function() return not vim.tbl_contains({ "dap-repl" }, vim.bo.filetype) end,
 			keymap = {
-				-- set to 'none' to disable the 'default' preset
 				preset = 'none',
-
-				['<Up>'] = { 'select_prev', 'fallback' },
-
-				['<Down>'] = { 'select_next', 'fallback' },
-
-				['<CR>'] = { 'accept', 'fallback' },
-
-				['<Tab>'] = { function(cmp)
-					if cmp.is_visible() then
-						cmp.select_next()
-						return true
-					end
-				end, 'fallback' },
-
-				['<S-Tab>'] = { function(cmp)
-					if cmp.is_visible() then
-						cmp.select_prev()
-						return true
-					end
-				end, 'fallback' },
-
-
-				['<C-j>'] = { function(cmp)
-					if cmp.snippet_active() then
-						return cmp.accept()
-					else
-						return cmp.select_and_accept()
-					end
-				end,
+				['<C-d>'] = { 'show', 'show_documentation', 'hide_documentation' },
+				['<C-e>'] = { 'hide', 'fallback' },
+				['<Tab>'] = {
+					function(cmp)
+						if cmp.snippet_active() then
+							return cmp.accept()
+						else
+							return cmp.select_and_accept()
+						end
+					end,
 					'snippet_forward',
 					'fallback'
 				},
+				['<S-Tab>'] = { 'snippet_backward', 'fallback' },
 
+				['<Up>'] = { 'select_prev', 'fallback' },
+				['<Down>'] = { 'select_next', 'fallback' },
+				['<C-p>'] = { 'select_prev', 'fallback_to_mappings' },
+				['<C-n>'] = { 'select_next', 'fallback_to_mappings' },
 
-				['<C-k>'] = { 'snippet_backward', 'fallback' },
+				['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+				['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
 
-				['<C-n>'] = { 'select_and_accept' },
+				['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
 
-				['<C-p>'] = { 'cancel' },
-
-
-				['<C-d>'] = { 'show_documentation', 'scroll_documentation_down' },
-
-				['<C-u>'] = { 'scroll_documentation_up' },
-
-				['<C-h>'] = { 'show_documentation', 'hide_documentation' },
-
-				-- ['<C-S>'] = { 'show_signature', 'hide_signature', 'fallback' },
-				['<C-S>'] = false,
 			},
+
+			-- keymap = {
+			-- 	-- set to 'none' to disable the 'default' preset
+			-- 	preset = 'none',
+			--
+			-- 	['<Up>'] = { 'select_prev', 'fallback' },
+			--
+			-- 	['<Down>'] = { 'select_next', 'fallback' },
+			--
+			-- 	['<CR>'] = { 'accept', 'fallback' },
+			--
+			-- 	['<Tab>'] = { function(cmp)
+			-- 		if cmp.is_visible() then
+			-- 			cmp.select_next()
+			-- 			return true
+			-- 		end
+			-- 	end, 'fallback' },
+			--
+			-- 	['<S-Tab>'] = { function(cmp)
+			-- 		if cmp.is_visible() then
+			-- 			cmp.select_prev()
+			-- 			return true
+			-- 		end
+			-- 	end, 'fallback' },
+			--
+			--
+			-- 	['<C-j>'] = { function(cmp)
+			-- 		if cmp.snippet_active() then
+			-- 			return cmp.accept()
+			-- 		else
+			-- 			return cmp.select_and_accept()
+			-- 		end
+			-- 	end,
+			-- 		'snippet_forward',
+			-- 		'fallback'
+			-- 	},
+			--
+			--
+			-- 	['<C-k>'] = { 'snippet_backward', 'fallback' },
+			--
+			-- 	['<C-n>'] = { 'select_and_accept' },
+			--
+			-- 	['<C-p>'] = { 'cancel' },
+			--
+			--
+			-- 	['<C-d>'] = { 'show_documentation', 'scroll_documentation_down' },
+			--
+			-- 	['<C-u>'] = { 'scroll_documentation_up' },
+			--
+			-- 	['<C-h>'] = { 'show_documentation', 'hide_documentation' },
+			--
+			-- 	-- ['<C-S>'] = { 'show_signature', 'hide_signature', 'fallback' },
+			-- 	['<C-S>'] = false,
+			-- },
 			cmdline = { enabled = false },
 			appearance = {
 				nerd_font_variant = 'mono',

@@ -4,6 +4,7 @@ local servers = {
 	"basedpyright",
 	"clangd",
 	"csharp_ls",
+	"cmake"
 }
 
 return {

@@ -33,19 +33,65 @@ return {
 			end
 
 
+
 			--codelldb debugger
 			dap.adapters.codelldb = {
 				type = "executable",
-				command = "codelldb", -- or if not in $PATH: "/absolute/path/to/codelldb"
+				command = "/Users/ikun/.local/share/nvim/mason/bin/codelldb", -- or if not in $PATH: "/absolute/path/to/codelldb"
 				-- On windows you may have to uncomment this:
 				-- detached = false,
 			}
+
+			dap.adapters.lldb = {
+				type = 'executable',
+				command = '/Library/Developer/CommandLineTools/usr/bin/lldb-dap', -- adjust as needed, must be absolute path
+				name = 'lldb'
+			}
+
+			--c debugger
+			dap.configurations.c = {
+				{
+					name = "Build and launch current file",
+					type = "lldb",
+					request = "launch",
+					program = function()
+						-- -- Runs synchronously:
+						-- local obj = vim.system({ 'echo', 'hello' }, { text = true }):wait()
+						local file        = vim.fn.expand("%:p");
+						local output_file = vim.fn.expand("%:p:r");
+						local obj         = vim.system(
+							{ 'gcc', '-Wall', '-g', file, '-o', output_file },
+							{ text = true }):wait()
+						if obj.stderr ~= nil and obj.stderr ~= '' then
+							vim.notify(obj.stderr, vim.log.levels.ERROR)
+							return nil
+						end
+						return output_file
+					end,
+					cwd = '${workspaceFolder}',
+					stopOnEntry = false,
+				},
+
+				{
+					name = "Launch exec",
+					type = "lldb",
+					request = "launch",
+					program = function()
+						return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+					end,
+					cwd = '${workspaceFolder}',
+					stopOnEntry = false,
+				},
+
+			}
+
+
 
 			--cpp debug config
 			dap.configurations.cpp = {
 				{
 					name = "Build and launch current file",
-					type = "codelldb",
+					type = "lldb",
 					request = "launch",
 					program = function()
 						-- -- Runs synchronously:
@@ -67,7 +113,7 @@ return {
 
 				{
 					name = "Launch exec",
-					type = "codelldb",
+					type = "lldb",
 					request = "launch",
 					program = function()
 						return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
@@ -290,7 +336,7 @@ return {
 	{
 		"rcarriga/nvim-dap-ui",
 		event = "VeryLazy",
-		dependencies = {  "nvim-neotest/nvim-nio" },
+		dependencies = { "nvim-neotest/nvim-nio" },
 		config = function()
 			require("lazydev").setup({
 				library = { "nvim-dap-ui" },
